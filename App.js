@@ -1,11 +1,12 @@
 import React from "react";
 import { StyleSheet, Text, View, SafeAreaView } from "react-native";
+import ColorBox from "./components/color-box";
 
 // const list = [
-//   { title: "Cyan #2aa198", color: "#2aa198" },
-//   { title: "Blue #268bd2", color: "#268bd2" },
-//   { title: "Magenta #d33682", color: "#d33682" },
-//   { title: "Orange #cb4b16", color: "#cb4b16" },
+//   { colorName: "Cyan", hexCode: "#2aa198" },
+//   { colorName: "Blue", hexCode: "#268bd2" },
+//   { colorName: "Magenta", hexCode: "#d33682" },
+//   { colorName: "Orange", hexCode: "#cb4b16" },
 // ];
 
 // const showColor = () => {
@@ -19,18 +20,10 @@ const App = () => {
     <SafeAreaView>
       <View style={styles.container}>
         <Text style={styles.text}>Here are some boxes of different colors</Text>
-        <View style={[styles.cyan, styles.box]}>
-          <Text style={styles.boxText}>Cyan #2aa198</Text>
-        </View>
-        <View style={[styles.blue, styles.box]}>
-          <Text style={styles.boxText}>Blue #268bd2</Text>
-        </View>
-        <View style={[styles.magenta, styles.box]}>
-          <Text style={styles.boxText}>Magenta #d33682</Text>
-        </View>
-        <View style={[styles.orange, styles.box]}>
-          <Text style={styles.boxText}>Orange #cb4b16</Text>
-        </View>
+        <ColorBox colorName="Cyan" hexCode="#2aa198" />
+        <ColorBox colorName="Blue" hexCode="#268bd2" />
+        <ColorBox colorName="Magenta" hexCode="#d33682" />
+        <ColorBox colorName="Orange" hexCode="#cb4b16" />
       </View>
     </SafeAreaView>
   );
@@ -51,28 +44,6 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     color: "white",
     marginBottom: 10,
-  },
-  box: {
-    padding: 10,
-    justifyContent: "center",
-    alignItems: "center",
-    marginBottom: 10,
-  },
-  cyan: {
-    backgroundColor: "#2aa198",
-  },
-  blue: {
-    backgroundColor: "#268bd2",
-  },
-  magenta: {
-    backgroundColor: "#d33682",
-  },
-  orange: {
-    backgroundColor: "#cb4b16",
-  },
-  boxText: {
-    color: "white",
-    fontWeight: "bold",
   },
 });
 
