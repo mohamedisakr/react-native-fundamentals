@@ -22,5 +22,5 @@ const App = () => {
     </NavigationContainer>
   );
 };
-// options={{ title: 'My home' }}
+
 export default App;
