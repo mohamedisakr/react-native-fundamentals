@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 1 },
     shadowOpacity: 0.3,
     shadowRadius: 1,
-    elevation: 2,
+    elevation: 10,
   },
   text: {
     fontWeight: "bold",

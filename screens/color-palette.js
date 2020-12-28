@@ -1,19 +1,18 @@
 import React from "react";
-import { Text, SafeAreaView, FlatList, StyleSheet } from "react-native";
+import { Text, FlatList, StyleSheet } from "react-native";
 import ColorBox from "../components/color-box";
 
-import { COLORS } from "../data/colors";
-
-const ColorPalette = () => {
+const ColorPalette = ({ route }) => {
+  const { paletteName, colors } = route.params;
   return (
     <FlatList
       style={styles.container}
-      data={COLORS}
+      data={colors}
       keyExtractor={(item) => item.hexCode}
       renderItem={({ item }) => (
         <ColorBox hexCode={item.hexCode} colorName={item.colorName} />
       )}
-      ListHeaderComponent={<Text style={styles.heading}>Solarized</Text>}
+      ListHeaderComponent={<Text style={styles.heading}>{paletteName}</Text>}
     />
   );
 };
