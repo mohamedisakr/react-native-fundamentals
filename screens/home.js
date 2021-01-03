@@ -1,11 +1,5 @@
 import React, { useState, useCallback, useEffect } from "react";
-import {
-  FlatList,
-  StyleSheet,
-  TouchableOpacity,
-  Text,
-  Switch,
-} from "react-native";
+import { FlatList, StyleSheet, TouchableOpacity, Text } from "react-native";
 import PalettePreview from "../components/palette-preview";
 // import { COLOR_PALETTES } from "../data/colors";
 // import { getColors } from "../services/color-api";

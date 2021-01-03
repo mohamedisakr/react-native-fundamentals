@@ -7,19 +7,34 @@ import {
   TouchableOpacity,
   Alert,
   Switch,
+  FlatList,
 } from "react-native";
+import { COLORS } from "../data/colors";
 
 const ColorPaletteModal = ({ navigation }) => {
   const [name, setName] = useState("");
+  const [selectedColors, setSelectedColors] = useState([]);
 
   const handleSubmit = useCallback(() => {
     if (!name) {
       Alert.alert("Please enter palette name");
+    } else if (selectedColors.length < 3) {
+      Alert.alert("Please add at least 3 colors");
     } else {
-      const newColorPalette = { paletteName: name, colors: [] };
+      const newColorPalette = { paletteName: name, colors: selectedColors };
       navigation.navigate("Home", { newColorPalette });
     }
-  }, [name]);
+  }, [name, selectedColors]);
+
+  const handleValueChanged = (val, color) => {
+    if (val === true) {
+      setSelectedColors((colors) => [...colors, color]);
+    } else {
+      setSelectedColors((colors) =>
+        colors.filter((selected) => color.colorName !== selected)
+      );
+    }
+  };
 
   return (
     <View style={styles.container}>
@@ -30,10 +45,22 @@ const ColorPaletteModal = ({ navigation }) => {
         style={styles.input}
         placeholder="Palette Name"
       />
-      <View style={styles.color}>
-        <Text>Color Name</Text>
-        <Switch value={true} onValueChange={() => {}} />
-      </View>
+      <FlatList
+        data={COLORS}
+        keyExtractor={({ id }) => id.toString()}
+        renderItem={({ colorName }) => (
+          <View style={styles.color}>
+            <Text>{colorName}</Text>
+            <Switch
+              value={!!selectedColors.find((color) => color === colorName)}
+              onValueChange={(selected) => {
+                handleValueChanged(selected, colorName);
+              }}
+            />
+          </View>
+        )}
+      />
+
       <TouchableOpacity onPress={handleSubmit} style={styles.button}>
         <Text style={styles.buttonText}>Submit</Text>
       </TouchableOpacity>
@@ -52,7 +79,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     padding: 10,
     borderRadius: 5,
-    marginBottom: 40,
+    marginBottom: 10,
   },
   button: {
     height: 40,
